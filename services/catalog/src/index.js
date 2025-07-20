@@ -8,9 +8,12 @@ import { createClient } from 'redis';
 dotenv.config();
 const app = express();
 
-app.use(cors({
-  origin: process.env.CORS_ORIGINS.split(',') || ['*']
-}));
+// CORS con fallback si no existe la variable
+const corsOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',')
+  : ['*'];
+app.use(cors({ origin: corsOrigins }));
+
 app.use(express.json());
 
 let db, redisClient;
@@ -25,14 +28,12 @@ app.use('/api', createRouter({ db, redis: redisClient }));
 
 app.get('/healthz', (_req, res) => res.json({ ok: true }));
 
-//const port = process.env.PORT || 3001;
-//app.listen(port, () => {
-//  console.log(`Service catalog running on port ${port}`);
-//});
-
+// Puerto e interfaz
 const port = process.env.PORT || 3001;
-const host = '0.0.0.0';  // escucha en todas las interfaces
+const host = '0.0.0.0';
 
+// Arranque del servidor
 app.listen(port, host, () => {
-  console.log(`Service auth running on http://${host}:${port}`);
+  console.log(`Service catalog running on http://${host}:${port}`);
 });
+
