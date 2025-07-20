@@ -1,0 +1,6 @@
+./services/auth/redisClient.js:3:const redisClient = createClient({
+./services/media/src/index.js:22:  redisClient = createClient({ url: `redis://${process.env.REDIS_HOST}` });
+./services/offers/src/index.js:22:  redisClient = createClient({ url: `redis://${process.env.REDIS_HOST}` });
+./services/catalog/src/index.js:22:  redisClient = createClient({ url: `redis://${process.env.REDIS_HOST}` });
+./services/notifications/src/index.js:22:  redisClient = createClient({ url: `redis://${process.env.REDIS_HOST}` });
+./services/vehicles/src/index.js:22:  redisClient = createClient({ url: `redis://${process.env.REDIS_HOST}` });
