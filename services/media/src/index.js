@@ -25,7 +25,14 @@ app.use('/api', createRouter({ db, redis: redisClient }));
 
 app.get('/healthz', (_req, res) => res.json({ ok: true }));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Service media running on port ${port}`);
+//const port = process.env.PORT || 3003;
+//app.listen(port, () => {
+//  console.log(`Service media running on port ${port}`);
+//});
+
+const port = process.env.PORT || 3003;
+const host = '0.0.0.0';  // escucha en todas las interfaces
+
+app.listen(port, host, () => {
+  console.log(`Service auth running on http://${host}:${port}`);
 });
